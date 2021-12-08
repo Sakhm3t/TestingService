@@ -1,0 +1,23 @@
+{% extends 'TestingService/base.html' %}
+
+{% block content %}
+    <form action="{% url 'TestingService:testing_answers' pk %}" method="post">
+        {% csrf_token %}
+            <p><label for="id_question">Вопрос : </label><textarea name="question" cols="30" rows="3" readonly maxlength="500" required>{{ form.data.question }}</textarea></p>
+            <p><label>Варианты ответа :</label>
+        {% for ans in form.data.answers %}
+            <li><label><input type="checkbox" name="checked_ans" value="{{ ans.choice }}">{{ ans.choice }}</label></li>
+        {% endfor %}
+        <br><input type="submit" value="Ответить"></br>
+    </form>
+{% endblock content %}
+
+{% comment %}
+{% block content %}
+        <form action="{% url 'TestingService:testing_answers' pk %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Ответить">
+        </form>
+{% endblock content %}
+{% endcomment %}

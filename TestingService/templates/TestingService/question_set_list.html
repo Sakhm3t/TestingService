@@ -1,0 +1,9 @@
+{% extends 'TestingService/base.html' %}
+
+{% block content %}
+    _________________________________
+    {{ request.user }}
+    {% for q_set in object_list %}
+        <li><a href="{{ q_set.pk }}">{{ q_set }}</a></li>
+    {% endfor %}
+{% endblock content %}

@@ -1,0 +1,7 @@
+{% extends 'TestingService/base.html' %}
+
+{% block content %}
+    <img src="data:image/png;base64, {{ b64str }}" alt="Your results" />
+Ура! Тест пройден! <br>
+    Ваш результат {{ res }} из {{ num }}
+{% endblock content %}

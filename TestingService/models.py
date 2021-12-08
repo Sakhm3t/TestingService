@@ -2,9 +2,10 @@ from django.db import models
 
 
 # Create your models here.
+from django.urls import reverse
+
 
 class Questions(models.Model):
-    id_question = models.IntegerField(primary_key=True)
     text_question = models.CharField(max_length=200)
 
     class Meta:
@@ -12,7 +13,7 @@ class Questions(models.Model):
         verbose_name_plural = 'Questions'
 
     def __str__(self):
-        return str(self.id_question)
+        return str(self.text_question)
 
 
 class Choices(models.Model):
@@ -29,8 +30,15 @@ class Choices(models.Model):
 
 
 class QuestionsSet(models.Model):
-    id_set = models.ManyToManyField(Questions)
     set_title = models.TextField()
+    questions = models.ManyToManyField(Questions)
+
+    class Meta:
+        verbose_name = 'QuestionsSets'
+        verbose_name_plural = 'QuestionsSets'
 
     def __str__(self):
         return self.set_title
+
+    def get_absolute_url(self):
+        return reverse('TestingService:question_set_list', kwargs={'pk': self.pk})

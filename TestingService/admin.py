@@ -16,19 +16,21 @@ class QuestionsInline(admin.TabularInline):
 
 class QuestionsAdmin(admin.ModelAdmin):
     list_display = ('text_question',)
-    ordering = ('id_question',)
-    fields = ('text_question',)
+    # ordering = ('id_question',)
+    # fields = ('id_question', 'text_question',)
     inlines = (ChoicesInline,)
 
 
 class QuestionsSetAdmin(admin.ModelAdmin):
-    list_display = ('id_set', 'set_title',)
-    inlines = (ChoicesInline,)
+    # list_display = ('id_set', 'set_title',)
+    # inlines = (QuestionsInline,)
 
     def formfield_for_manytomany(self, db_field, request=None, **kwargs):
-        pass
+        #if db_field.name == "id_set":
+        kwargs["queryset"] = Questions.objects.all()
+        return super().formfield_for_manytomany(db_field, request, **kwargs)
 
 
 admin.site.register(Questions, QuestionsAdmin)
 admin.site.register(Choices)
-admin.site.register(QuestionsSet)
+admin.site.register(QuestionsSet, QuestionsSetAdmin)

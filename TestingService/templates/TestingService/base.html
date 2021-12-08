@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TestingService</title>
+    <link rel=stylesheet href={% static "TestingService/css/app.css" %}>
+</head>
+<body>
+
+{% block title01 %}
+    <aside>
+        <h2>Testing Service</h2><br>
+        <ul.hr>
+            <li><a href="{% url 'TestingService:register' %}">Register</a></li><br>
+            <li><a href="{% url 'TestingService:login' %}">Login</a></li><br>
+            <li><a href="{% url 'TestingService:logout' %}">Logout</a></li><br>
+            <li><a href="{% url 'TestingService:main' %}">Home</a></li><br>
+        </ul.hr>
+    </aside>
+{% endblock title01 %}
+
+{% block content %}
+    <br>
+    <li><a href="{% url 'TestingService:question_set_list' %}">Choose the test</a></li><br>
+{% endblock content %}
+
+{% block content01 %}
+
+{% endblock content01 %}
+
+</body>
+</html>
