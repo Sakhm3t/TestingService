@@ -1,7 +1,5 @@
 from django.db import models
 
-
-# Create your models here.
 from django.urls import reverse
 
 
@@ -30,6 +28,7 @@ class Choices(models.Model):
 
 
 class QuestionsSet(models.Model):
+
     set_title = models.TextField()
     questions = models.ManyToManyField(Questions)
 
@@ -41,4 +40,4 @@ class QuestionsSet(models.Model):
         return self.set_title
 
     def get_absolute_url(self):
-        return reverse('TestingService:question_set_list', kwargs={'pk': self.pk})
+        return reverse('TestingService:question_set_list')

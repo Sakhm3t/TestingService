@@ -2,11 +2,6 @@ from django import forms
 from .models import *
 
 
-# для правильного вывода (переписывает вывод __str__)
-# class MyModelChoiceField(ModelChoiceField):
-#     def label_from_instance(self, obj):
-#         return "My Object #%i" % obj.id
-
 class QuestionSetForm(forms.Form):
     question = forms.CharField(
         max_length=500,
